@@ -1,13 +1,12 @@
 package com.company;
-
-
 import java.util.Scanner;
 
 public class Main  {
 
     public Main() { }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         Scanner in = new Scanner(System.in);
 
@@ -41,23 +40,25 @@ public class Main  {
 
         private Neighbour winner = null;
 
-        public FightGame(Neighbour N1, Neighbour N2) {
+        public FightGame(Neighbour N1, Neighbour N2)
+        {
             this.N1 = N1;
             this.N2 = N2;
         }
 
-        public void Run() {
-
+        public void Run() 
+        {
             Fight();
             PrintWinner();
-            
         }
 
-        private void PrintWinner() {
+        private void PrintWinner()
+        {
             System.out.printf(String.format(WINNER_MESSAGE_TEMPLATE,winner.name,currentTurn));
         }
 
-        private void Fight() {
+        private void Fight()
+        {
             do{
                 currentTurn++;
 
@@ -109,35 +110,37 @@ public class Main  {
                     return;
                 }
                 System.out.printf(ATTACK_MESSAGE_TEMPLATE,name,attackName,other.name,other.healthPoints);
-
         }
 
-        private boolean shouldAttack() {
+        private boolean shouldAttack()
+        {
             return currentTurn % 2 == (attacksWhenOdd ? 1 : 0);
         }
-
-        private void DecreaseHealth(int points) {
+        
+        private void DecreaseHealth(int points)
+        {
             this.healthPoints -= points;
         }
-
-        public boolean IsDead() {
+        
+        public boolean IsDead()
+        {
             return  healthPoints <= 0;
         }
-
-        public void IncreaseHealth(int points) {
+        
+        public void IncreaseHealth(int points)
+        {
             this.healthPoints += points;
         }
 
-
         //Return true if the current player kills the other during the turn
-        public boolean MakeTurnAgainst(Neighbour other) {
-
+        public boolean MakeTurnAgainst(Neighbour other) 
+        {
             currentTurn++;
-
-            if(shouldAttack()){
+            
+            if(shouldAttack())
+            {
                 Attack(other);
             }
-
             return other.IsDead();
         }
     }
